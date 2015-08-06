@@ -8,6 +8,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
 	"time"
 
 	"github.com/buddhamagnet/gq"
@@ -45,6 +46,7 @@ func init() {
 
 func main() {
 	flag.Parse()
+	gq.Logger(log.Println)
 	gq.StartDispatcher(nworkers)
 	work := WorkRequest{Delay: 5 * time.Second}
 	gq.WorkQueue <- work

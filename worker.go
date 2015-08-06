@@ -1,7 +1,7 @@
 package gq
 
 import (
-	"log"
+	"fmt"
 	"time"
 )
 
@@ -43,15 +43,15 @@ func (w Worker) Start() {
 			select {
 			case work := <-w.Work:
 				// Receive a work request.
-				log.Printf("worker%d: %s", w.ID, work.Preprocess())
+				logger(fmt.Sprintf("worker%d: %s", w.ID, work.Preprocess()))
 				time.Sleep(work.DelayTime())
 
-				log.Printf("worker%d: %s", w.ID, work.Postprocess())
+				logger(fmt.Sprintf("worker%d: %s", w.ID, work.Postprocess()))
 
 				work.Work()
 
 			case <-w.QuitChan:
-				log.Printf("worker%d stopping\n", w.ID)
+				logger(fmt.Sprintf("worker%d stopping\n", w.ID))
 				return
 			}
 		}
