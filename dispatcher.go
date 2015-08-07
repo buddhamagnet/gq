@@ -2,13 +2,16 @@ package gq
 
 import "fmt"
 
-// WorkerQueue is a buffered channel that holds the work channels
+// WorkerQueue is a buffered channel that
+// holds the work channels.
 var (
 	WorkQueue   chan WorkRequestInterface
 	WorkerQueue chan chan WorkRequestInterface
 	logger      func(...interface{})
 )
 
+// Logger takes a function to be used to
+// output work progress information.
 func Logger(logFunc func(...interface{})) {
 	logger = logFunc
 }

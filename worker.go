@@ -5,7 +5,9 @@ import (
 	"time"
 )
 
-// WorkRequest interface
+// WorkRequest interface represents a work
+// request, the main function being Work, which
+// does the actual work required.
 type WorkRequestInterface interface {
 	Work()
 	DelayTime() time.Duration
@@ -14,7 +16,9 @@ type WorkRequestInterface interface {
 	Postprocess() string
 }
 
-// Worker object
+// Worker represents a worker, which contains
+// a reference to the three channels used by
+// gq to manage the queue.
 type Worker struct {
 	ID          int
 	Work        chan WorkRequestInterface
@@ -22,7 +26,7 @@ type Worker struct {
 	QuitChan    chan bool
 }
 
-// NewWorker creates and returns a new Worker object
+// NewWorker creates and returns a new Worker object.
 func NewWorker(id int, workerQueue chan chan WorkRequestInterface) Worker {
 	worker := Worker{
 		ID:          id,
@@ -42,14 +46,10 @@ func (w Worker) Start() {
 
 			select {
 			case work := <-w.Work:
-				// Receive a work request.
 				logger(fmt.Sprintf("worker%d: %s", w.ID, work.Preprocess()))
 				time.Sleep(work.DelayTime())
-
-				logger(fmt.Sprintf("worker%d: %s", w.ID, work.Postprocess()))
-
 				work.Work()
-
+				logger(fmt.Sprintf("worker%d: %s", w.ID, work.Postprocess()))
 			case <-w.QuitChan:
 				logger(fmt.Sprintf("worker%d stopping\n", w.ID))
 				return
