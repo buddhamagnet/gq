@@ -53,3 +53,5 @@ func main() {
 	time.Sleep(15 * time.Second)
 }
 ```
+
+[![GoDoc](https://godoc.org/github.com/buddhamagnet/gq?status.svg)](https://godoc.org/github.com/buddhamagnet/gq)
