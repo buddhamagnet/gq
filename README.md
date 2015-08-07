@@ -1,5 +1,7 @@
 gq is a small package used for setting up a worker queue system in Go.
 
+[![GoDoc](https://godoc.org/github.com/buddhamagnet/gq?status.svg)](https://godoc.org/github.com/buddhamagnet/gq)
+
 ###EXAMPLE
 
 ```go
@@ -53,5 +55,3 @@ func main() {
 	time.Sleep(15 * time.Second)
 }
 ```
-
-[![GoDoc](https://godoc.org/github.com/buddhamagnet/gq?status.svg)](https://godoc.org/github.com/buddhamagnet/gq)
