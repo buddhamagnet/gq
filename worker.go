@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-// WorkRequest interface represents a work
+// WorkRequestInterface represents a work
 // request, the main function being Work, which
 // does the actual work required.
 type WorkRequestInterface interface {
