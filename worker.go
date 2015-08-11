@@ -11,7 +11,6 @@ import (
 type WorkRequestInterface interface {
 	Work()
 	DelayTime() time.Duration
-	Data() string
 	Preprocess() string
 	Postprocess() string
 }
